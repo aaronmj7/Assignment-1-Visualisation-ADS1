@@ -24,7 +24,7 @@ def lineplot(list):
     plt.ylabel("Unemployment Rate")
     plt.title("Unemployment Rates of G7 Countries(2001-2020)")
     plt.legend()
-    #plt.savefig("Unemployment Rates of G7 Countries(2001-2020).png")
+    plt.savefig("Unemployment Rates of G7 Countries(2001-2020).png")
     plt.show()
 
 
@@ -33,6 +33,7 @@ cpi = pd.read_excel("g7_cpi.xlsx", index_col=0)
 
 countries = ["Canada","France","Germany","Italy","Japan",
              "United Kingdom","United States"]
+
 lineplot(countries)
 
 
