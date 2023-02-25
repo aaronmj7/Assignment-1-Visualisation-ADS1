@@ -24,6 +24,7 @@ def lineplot(list):
     plt.ylabel("Unemployment Rate")
     plt.title("Unemployment Rates of G7 Countries(2001-2020)")
     plt.legend()
+    #plt.savefig("Unemployment Rates of G7 Countries(2001-2020).png")
     plt.show()
 
 
@@ -34,3 +35,15 @@ countries = ["Canada","France","Germany","Italy","Japan",
              "United Kingdom","United States"]
 lineplot(countries)
 
+
+plt.figure(figsize=(15,20))
+
+plt.subplot(1,2,1)
+plt.pie(unemp_rate.iloc[0], labels=(countries), autopct='%1.0f%%')
+plt.legend()
+
+plt.subplot(1,2,2)
+plt.pie(unemp_rate.iloc[-1], labels=(countries), autopct='%1.0f%%')
+plt.legend()
+
+plt.show()
