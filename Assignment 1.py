@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 
 def lineplot(list):
-    """ This Function plots the list as line plot
-    using matplotlib.pyplot
+    """ Function to plot the list as line plot from
+    umemp_rate dataframe using matplotlib.pyplot
     """
     plt.figure(figsize=(13,5.75))
 
