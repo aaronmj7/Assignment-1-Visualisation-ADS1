@@ -14,16 +14,17 @@ def lineplot(list):
     unemp_rate dataframe using matplotlib.pyplot
     """
 
-    plt.figure(figsize=(13, 5.75))
+    plt.figure(figsize=(15, 5.75))
 
     for i in list:
         plt.plot(unemp_rate.index, unemp_rate[i], label=i)
 
-    plt.xticks(range(2001, 2021))
+    plt.xticks(range(2001, 2021, 2), fontsize=15)
+    plt.yticks(fontsize=15)
     plt.xlim(2001, 2020)
     plt.xlabel("Year", fontsize=17)
     plt.ylabel("Unemployment Rate", fontsize=17)
-    plt.title("Unemployment Rates of G7 Countries(2001-2020)", fontsize=20)
+    plt.title("Unemployment Rates of G7 Countries(2001-2020)", fontsize=22)
     plt.legend()
     '''plt.savefig("Unemployment Rates of G7 Countries(2001-2020).png")'''
     plt.show()
@@ -34,17 +35,19 @@ def piechart(i1, i2):
     from unemp_rate dataframe with arguments index of unemp_rate
     """
 
-    plt.figure(figsize=(15, 20))
+    plt.figure(figsize=(20, 25))
 
     plt.subplot(1, 2, 1)
-    plt.pie(unemp_rate.iloc[int(i1)], labels=(countries), autopct='%1.0f%%')
+    plt.pie(unemp_rate.iloc[int(i1)], labels=(countries), autopct='%1.0f%%',
+            textprops={'fontsize': 20})
     plt.title("Unemployment rates " + str(unemp_rate.index[int(i1)]),
-              fontsize=20)
+              fontsize=25)
 
     plt.subplot(1, 2, 2)
-    plt.pie(unemp_rate.iloc[int(i2)], labels=(countries), autopct='%1.0f%%')
+    plt.pie(unemp_rate.iloc[int(i2)], labels=(countries), autopct='%1.0f%%',
+            textprops={'fontsize': 20})
     plt.title("Unemployment rates " + str(unemp_rate.index[int(i2)]),
-              fontsize=20)
+              fontsize=25)
 
     '''plt.savefig("Unemployment Rates of G7 Countries" +
              str(unemp_rate.index[int(a)]) + " & " +
@@ -56,14 +59,14 @@ def bargraph(i):
     """Function to plot a bargraph, using matplotlib.pyplot,
     from cpi dataframe with argument index of cpi
     """
-    plt.figure(figsize=(16, 6))
-    plt.bar(cpi.columns, cpi.iloc[i])
+    plt.figure(figsize=(15, 6))
+    plt.bar(cpi.columns, cpi.iloc[i], width=0.5)
     plt.xticks(fontsize=15)
     plt.yticks(fontsize=15)
     plt.xlabel("Country", fontsize=20)
     plt.ylabel("Consumer Price Index", fontsize=20)
     plt.title("Consumer Price Index of G7 countries in " + str(cpi.index[i]),
-              fontsize=20)
+              fontsize=25)
     plt.show()
 
 
@@ -75,6 +78,6 @@ countries = ["Canada", "France", "Germany", "Italy",
 
 lineplot(countries)
 
-piechart(5, 19)
+piechart(0, 19)
 
 bargraph(-1)
