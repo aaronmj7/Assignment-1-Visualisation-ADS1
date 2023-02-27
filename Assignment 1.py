@@ -80,6 +80,6 @@ countries = ["Canada", "France", "Germany", "Italy",
 
 lineplot(countries)
 
-piechart(0, 19)
+piechart(0, -1)
 
 bargraph(-1)
