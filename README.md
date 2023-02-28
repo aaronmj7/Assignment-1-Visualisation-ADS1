@@ -1,6 +1,6 @@
-# Assignment 1-Visualisation-ADS1
+# Assignment 1: Visualisation (ADS1)
 
-First assignment of Applied Data Science 1.
+Assignment 1 of Applied Data Science 1.
 
 1. Produce a line plot showing multiple lines with proper labels and legend.
 
