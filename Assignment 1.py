@@ -9,77 +9,115 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def lineplot(clist):
-    """Function to plot line plot from unemp_rate dataframe
-       using matplotlib.pyplot with the argument country list
+def lineplot(df, headers):
+    """Function to create a lineplot. Arguments:
+        A dataframe with labelled index and columns to be taken as y.
+        A list containing the headers of the columns to plot.
     """
 
-    plt.figure(figsize=(15, 5.75))
+    plt.figure(figsize=(17, 6.5))
 
-    for i in clist:  # for loop to plot each country
-        plt.plot(unemp_rate.index, unemp_rate[i], label=i)
+    # plotting each head
+    for head in headers:
+        plt.plot(df.index, df[head], label=head)
 
-    plt.xticks(range(2001, 2021, 2), fontsize=15)  #
+    # increasing size of ticks
+    plt.xticks(fontsize=15)
     plt.yticks(fontsize=15)
-    plt.xlim(2001, 2020)
+
+    # removing white space left and right
+    plt.xlim(df.index.min(), df.index.max())
+
+    # labelling
     plt.xlabel("Year", fontsize=17)
-    plt.ylabel("Unemployment Rate", fontsize=17)
-    plt.title("Unemployment Rates of G7 Countries(2001-2020)", fontsize=22)
-    plt.legend()
-    plt.savefig("Unemployment Rates of G7 Countries(2001-2020).png")
+    plt.ylabel("Consumer Price Index", fontsize=17)
+
+    # titling
+    plt.title("Consumer Price Index from " + str(df.index.min()) + " to " +
+              str(df.index.max()), fontsize=25)
+
+    plt.legend(fontsize=17)
+
+    # saving as png
+    plt.savefig("lineplot.png")
+
     plt.show()
 
+    return
 
-def piechart(i1, i2):
-    """Function to produce two piecharts, using matplotlib.pyplot,
-       from unemp_rate dataframe with arguments indexes of unemp_rate
+
+def piechart(df, i1, i2):
+    """Function to create two piecharts. Arguments:
+        A dataframe with rows to plot piecharts.
+        Index of the row to be plotted in first piechart.
+        Index of the row to be plotted in second piechart.
     """
 
     plt.figure(figsize=(20, 10))
 
-    plt.subplot(1, 2, 1)  # first pie chart
-    plt.pie(unemp_rate.iloc[int(i1)], labels=(unemp_rate.columns), autopct='%1.0f%%',
-            textprops={'fontsize': 20})
-    plt.title("Unemployment rates " + str(unemp_rate.index[int(i1)]),
-              fontsize=25)
-
-    plt.subplot(1, 2, 2)  # second pie chart
-    plt.pie(unemp_rate.iloc[int(i2)], labels=unemp_rate.columns,
+    # first pie chart
+    plt.subplot(1, 2, 1)
+    plt.pie(df.iloc[int(i1)], labels=(df.columns),
             autopct='%1.0f%%', textprops={'fontsize': 20})
-    plt.title("Unemployment rates " + str(unemp_rate.index[int(i2)]),
-              fontsize=25)
+    # titling
+    plt.title("Unemployment rates " + str(df.index[int(i1)]), fontsize=25)
 
-    plt.savefig("Unemployment Rates of G7 Countries" +
-                str(unemp_rate.index[int(i1)]) + " & " +
-                str(unemp_rate.index[int(i2)]) + ".png")
+    # second pie chart
+    plt.subplot(1, 2, 2)
+    plt.pie(df.iloc[int(i2)], labels=df.columns,
+            autopct='%1.0f%%', textprops={'fontsize': 20})
+    # titling
+    plt.title("Unemployment rates " + str(df.index[int(i2)]), fontsize=25)
+
+    # saving as png
+    plt.savefig("piechart.png")
+
     plt.show()
 
+    return
 
-def bargraph(i):
-    """Function to plot a bargraph, using matplotlib.pyplot,
-       from cpi dataframe with argument index of cpi
+
+def bargraph(df, i):
+    """Function to create a bargraph. Arguments:
+        A dataframe with columns to be taken as x and rows to be taken as y.
+        Index of the row to be taken as y.
     """
     plt.figure(figsize=(15, 6))
-    plt.bar(unemp_rate.columns, cpi.iloc[i], width=0.5)
+
+    plt.bar(df.columns, df.iloc[i], width=0.5)
+
+    # increasing size of ticks
     plt.xticks(fontsize=15)
     plt.yticks(fontsize=15)
+
+    # labelling
     plt.xlabel("Country", fontsize=17)
-    plt.ylabel("Consumer Price Index", fontsize=17)
-    plt.title("Consumer Price Index of G7 countries in " + str(cpi.index[i]),
-              fontsize=22)
-    plt.savefig("Consumer Price Index of G7 countries in " +
-                str(cpi.index[i]) + ".png")
+    plt.ylabel("Unemployment rates", fontsize=17)
+
+    # titling
+    plt.title("Unemployment rates in " + str(df.index[i]), fontsize=22)
+
+    # saving as png
+    plt.savefig("bargraph.png")
+
     plt.show()
 
+    return
 
-unemp_rate = pd.read_excel("g7_unemployment_rates.xlsx", index_col=0)
-cpi = pd.read_excel("g7_cpi.xlsx", index_col=0)
 
+# creating dataframe from the data
+df_unemp_rate = pd.read_excel("g7_unemployment_rates.xlsx", index_col=0)
+df_cpi = pd.read_excel("g7_cpi.xlsx", index_col=0)
+
+# creating list of countries to be plotted
 countries = ["Canada", "France", "Germany", "Italy",
              "Japan", "United Kingdom", "United States"]
 
-lineplot(countries)
+# calling lineplot with dataframe and columns to be plotted
+lineplot(df_cpi, countries)
 
-piechart(0, -1)
+# calling piechart with dataframe and row indexes to be plotted
+piechart(df_unemp_rate, 0, -1)
 
-bargraph(-1)
+# calling bargraph withdataframe and row index to be plotted
+bargraph(df_unemp_rate, -1)
