@@ -120,5 +120,5 @@ lineplot(df_cpi, countries)
 # calling piechart with dataframe and row indexes to be plotted
 piechart(df_unemp_rate, 2000, 2020)
 
-# calling bargraph withdataframe and row index to be plotted
+# calling bargraph with dataframe and row index to be plotted
 bargraph(df_unemp_rate, 2022)
