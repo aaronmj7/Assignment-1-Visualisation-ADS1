@@ -6,4 +6,4 @@ Assignment 1 of Applied Data Science 1.
 
 2. Produce graphs using two other visualisation methods.
 
-(Data Source: World Economic Outlook Database)
+(Data Source: https://www.imf.org/en/Publications/WEO/weo-database/2022/October)
